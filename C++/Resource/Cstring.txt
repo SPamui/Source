@@ -1,0 +1,37 @@
+//Declaration
+char <string_name>[<size>];
+
+//Inizialization
+char str[7] = {'a','b','c','d','e','f'} <- abbiamo bisogno di un posto in più per il carattere '\0'
+char str[7] = "abcdef";
+char str[] = "abcdef"; <- lunghezza dell' array 15
+
+//output
+char str[] = "abcdef";
+cout << str; //si, stampa "oggi non piove"
+
+//input
+char str[10];
+cin >> str; //legge fino EOF o blank
+cin.getline(str, 10, '\n') //legge fino a '\n', contiene anche i blank
+
+//<cstring> API
+strlen(str) //ritorna la lunghezza della stringa. Numero dei caratteri prima di '\0'
+strcpy(s1, s2) //copia la stringa s2 in s1
+strncpy(s1, s2, n) //copia al massimo n caratteri dalla stringa s2 in s1
+strcat(s1, s2) //Appende la stringa s2 alla stringa s1 . Il primo carattere di s2 sovrascrive il carattere di terminazione di s1
+strncat(s1, s2, n) //Appende al massimo n caratteri della stringa s2 alla stringa s1. Il primo carattere di s2 sovrascrive il carattere di terminazione di s1.
+strcmp(s1,s2) //Confronta le stringhe s1 ed s2 e restituisce zero, se sono uguali, un valore minore di zero se s1 è minore di s2 secondo l’ordine lessicografico e un valore maggiore di zero altrimenti
+strncmp (s1, s2, n) //Confronta i primi n caratteri di s1 ed s2 e restituisce zero, se sono uguali, un valore minore di zero se s1 è minore di s2 secondo l’ordine lessicografico e un valore maggiore di zero altrimenti
+stricmp (s1, s2, n) //La versione case insensitive di strcmp
+strtok(s1, s2) //s1 è la stringa da tokenizzare, al posto dei caratteri di s2 , in s1 verranno messi '\0'
+  esempio:
+    char testo[80];
+    cin.getline(testo, 80, '\n');
+    char *parola = strto(testo, " ,");
+    while(parola != NULL)
+    {
+      cout << parola << endl;
+      parola = strtok(NULL, " ,");
+    }
+  //l' esempio stampera tutte le semi stringhe separate da " ,", estratte da dalla stringa testo
