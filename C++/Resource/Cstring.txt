@@ -15,7 +15,7 @@ char str[10];
 cin >> str; //legge fino EOF o blank
 cin.getline(str, 10, '\n') //legge fino a '\n', contiene anche i blank
 
-//<cstring> API
+//#include <cstring> API
 strlen(str) //ritorna la lunghezza della stringa. Numero dei caratteri prima di '\0'
 strcpy(s1, s2) //copia la stringa s2 in s1
 strncpy(s1, s2, n) //copia al massimo n caratteri dalla stringa s2 in s1
