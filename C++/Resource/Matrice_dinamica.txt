@@ -1,0 +1,16 @@
+// Allocazione dinamica della matrice
+<tipo> **matrice;
+int row, cols;
+
+cin >> row >> cols;
+
+MATRICE = new int*[row]; //Alloca lo spazio per x puntatori (row)
+
+for(int dim_riga = 0; dim_riga < row; dim_riga++)   //Alloca lo spazio per row puntatori (cols)
+  MATRICE[dim_riga] = new int[cols];
+
+cout << "Inserisci: " << endl;
+
+for (int dim_riga = 0; dim_riga < row; dim_riga++)
+  for (int dim_colonna = 0; dim_colonna < cols; dim_colonna++)
+      cin >> MATRICE [dim_riga] [dim_colonna];
