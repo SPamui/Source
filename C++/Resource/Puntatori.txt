@@ -133,3 +133,62 @@ con l' operatore 'new' si da una cella di memoria nell' heap
 //quindi esisteranno finchè non è l' utente a cancellarlo
 //da qui il comune errore del Memory leak, cioè cancellare o perdere il collegamento tra puntatore e cella dinamica e quindi perderne //permanentemente l' accesso
 
+--//delete
+//usare delete <puntatore> non deallocherà il puntatore ma l' ogetto dinamico a lui associato, sempre che ce ne sia uno
+//esempio
+    int *p = new int(3) //assegno al puntatore p l' indirizzo dell' oggetto dinamico inizializzato a 3
+    delete p; //dealloco l' oggetto dinamico dall heap. Posso continuare ad usare ancora p
+    int x = 2;
+    p = &x;
+//non deallocare un oggetto dinamico è un Memory Leak
+//interrompere il collegamento tra puntatore ed oggetto dinamico, magari assegnando al puntatore un altro ogetto o valore, è un Memory     Leak
+//deallocare un oggetto dinamico rende il puntatore Dangling
+
+--//Array dinamico
+//dichiarazione
+int *a = new int[5] //array dinamico di 5 celle
+
+//deallocazione
+int *a = new int[5]
+delete [] a; //omettendo le quadre si dealloca teoricamente solo il primo elemento, avendo quindi un Memory Leak
+
+//Aumentare la lunghezza di un array dinamico
+//Teoria
+    //Avendo un array (q)[1][2][3][4][5], ma mi serve piu spazio, allora creo un altro puntatore(p)-array di quanto spazio mi serve 
+    [][][][][][][][][], poi copiamo i valori del primo nel secondo [1][2][3][4][5][][][], dopdiche dealloco il primo arrey e punto il       primo puntatore al secondo array.
+//esempio
+    int dim = 5;
+    int *a = new int [dim];
+    
+    for(int i = 0; i < dim; i++)
+        cin >> a[i];
+    
+    raddoppia(a, dim);
+    
+    for(int i = dim/2; i < dim; i++)
+        cin >> a[i];
+    
+    //dove raddoppia è: //oss: i puntatori sono passati a funzione per valore non per riferimento, quindi occorre passarlo per rif. (&)
+        int *p = new int[dim*2];
+        for(int i = 0; i < dim; i++)
+            p[i] = a[i];
+        delete [] a;
+        a = p;
+        dim *= 2;
+//L' output sarà 1 2 3 4 5 6 7 8 9 10
+
+--//Matrice dinamica
+//Ovviamente si può creare anche una matrice di tipo dinamico, ma in modo un po più diverso
+
+//Allocazione
+int **M = new int*[3]; //Essendo un vettore di puntatore, in questo modo definisco il numero di righe della matrice, in questo caso 3
+for(int i = 0; i < 3; i++) //dove in ogni cella ci sarà un puntatore che punta ad un altro vettore dinamico cosi da creare le colonne
+    M[i] = new int[4]      //in questo modo definisco il numero di colonne della matrice, in questo caso 4
+
+//accesso alla matrice
+cout << matrice[i][j];
+
+//deallocazione
+for(int i = 0; i < 3(row); i++)
+    delete [] M[i];             //quindi prima dealloco dalla memoria le colonne
+delete [] M;                    //e poi l' array delle righe
