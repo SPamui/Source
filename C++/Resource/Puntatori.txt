@@ -121,3 +121,15 @@ while(parola != nullptr)
     cout << parola << endl;       //se la frase = "luca mangia una mela" allora l' output sara' 1-Luca 2-mangia 3-una 4-mela
     parola = strtok(NULL, " ,");
 }
+
+--//puntatori e new
+i puntatori sono necessari per allocare la memoria in modo dinamico.
+con l' operatore 'new' si da una cella di memoria nell' heap
+//esempio:
+    int *p = new int; //dichiaro un puntatore ad interi 'p' che punta ad un indirizzo di una cella di memoria nell' heap
+    int *p = new int(3); //inizializzo l' int dinamico a 3
+    //per accedere o modificare il contenuto della cella dinamica si puo normalmente fare uso della deferenziazione
+//gli oggetti dinamici non vengono distrutti quando finisce l' ambito di visibilità del quale sono stati creati
+//quindi esisteranno finchè non è l' utente a cancellarlo
+//da qui il comune errore del Memory leak, cioè cancellare o perdere il collegamento tra puntatore e cella dinamica e quindi perderne //permanentemente l' accesso
+
