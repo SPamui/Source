@@ -1,6 +1,7 @@
 import sqlite3
 
 conn = sqlite3.connect('my.db')
+cursor = conn.cursor()
 
 if conn:
     print ("Opened database successfully")
@@ -9,13 +10,14 @@ else:
 
 sql = "CREATE table account ( id int primary key);"
 
-conn.execute(sql)
+cursor.execute(sql)
 
 sql = "SELECT * FROM account;"
 
-cursor = conn.execute(sql)
+count = cursor.execute(sql)
 
-for row in cursor:
+for row in count:
     print row
-
+    
+conn.commit()
 conn.close()
