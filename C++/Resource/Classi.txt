@@ -1,0 +1,133 @@
+//----------Programmazione ad oggetti----------//
+
+La Programmazione Orientata agli Oggetti è un paradigma di programmazione
+Un programma è visto come un insieme di oggetti che interagiscono tra loro
+
+Ogni oggetto è caratterizzato da
+- Attributi:
+    parametri che lo contraddistinguono, che caratterizzano lo stato dell' oggetto
+- Comportamento:
+    insieme di funzionalità, di azioni che sepcificano come si modifica lo stato a seguito di stimoli provenienti dall' esterno
+
+Es: Automobile
+    Attributi:
+        Cilindrata, l' alimentazione, peso, ecc
+    Funzionalità/Comportamento:
+        Accelera, frena.
+
+//----Principi della POO----//
+
+- Incapsulamento o Information Hiding
+- Ereditarietà
+- Polimorfismo
+
+    //--Incapsulamento--//
+        Consiste nella separazione tra interfaccia delal classe ed implementazione
+            - Interfaccia è l' insieme di metodi che possono essere invocati  dall' utente per interagire con l' oggetto
+            - implementazione delle funzionalità dell' oggetto
+
+    //--Ereditarietà--//
+        Permette di definire delle classi a partire da altre già definite
+            - Specializzazione - Generalizzazione
+            - Gerarchia di Classi
+            - Facilita il riutilizzo del codice
+
+//----Le classi----//
+
+- Sono l' unita standard di programmazione
+- Una classe è come un modello per creare oggetti
+    Permette di definire un nuovo tipo di dati
+- Un oggetto è un' istanza della classe
+
+- Modelli di oggetti che hanno attributi (dati) e comportamenti (funzioni)
+- Definite usando la keyboard 'class'
+- Il corpo della classe è racchiuso tra ' { } ' e termina con ' ; '
+
+    Es:
+        class Data
+        {
+            private:
+                int giorno();
+            
+            public:
+                ...
+                void stampaData();
+        };
+
+- Private e Public sono 'specificatori d' accesso'
+    - ciò che è 'public' fa parte dell' interfaccia della classe, ciò a cui può accedere l' utente, accessibile da tutti i punti del programma
+    - ciò che è 'private' è accessibile solo all' interno della classe, per es. alla classe sopra la variabile giorno non è accessibile al di fuori dellla classe
+    - 'protected' è simile a 'private' ma legato al concetto di ereditarietà
+
+- Si accede ad un campo o una funzione della classe con l' operatore  ' . '
+Es.
+    class Coppia
+    {
+        public:             //se non specifico public, il compilatore prenderebbe di default tutto 'private'
+            int a;
+            int b;
+    };
+
+    int main(){
+        
+        Coppia x;           //è un' instanza di Coppia
+
+        x.a = 2;            //con '.' accedo al campo 'a' dell' istanza x
+        x.b = 3;
+    }
+
+- Nelle classi possiamo dichiare anche come funzione, una funione costruttore che in pratica viene chiamata appe sia crea l' instanza
+    - In sua assenza, nel momento di inizializzazione dell' istanza viene chiamato un costruttore di default che crea lo spazio in memoria per i dati della classe.
+    - Nelle nuove versioni possiamo iniziallizare i dati anche nel momento in cui le dichiariamo, in assenza del costruttore, ad essi viene lasciato il valore assegnato, al cotrario, in presenza del costruttore, quel valore viene sostituito e perso
+    - Ha come nome il nome stesso della classe
+    - Non ha return
+
+Es.
+    class Coppia
+    {
+        public:             //se non specifico public, il compilatore prenderebbe di default tutto 'private'
+            int a;
+            int b;
+
+        private:
+            Coppia(){
+                a = 0;
+                b = 0;
+            }
+    };
+
+    int main(){
+        
+        Coppia x;           //appena creata l' instanza, automaticamente viene invocato il costruttore da noi designato. In questo caso
+                            //settando i campi 'a' = 0 e 'b' = 0
+    }
+
+    - Di norma per l' inizializzazione dei dati, si usa una formattazione diversa da come citata sopra. Non è un errore, ma è di buona norma scrivere un costruttore che inizializza i dati in questo modo: " nome_classe(tipo_dato x, tipo_dato y): dato(x), dato2(y){}",
+      questo costruttore si chiama "lista di inizializzazione". Nelle graffe possone esserci anche altre istruzioni
+    
+    - Di costruttori possono essercene più di uno. Si puo decidere quale chiamare cambianto i prametri della funzione. In presenza di un costruttore avente dei campi, deve esserci anche il costruttore normale cioè 'Coppie()' anche senza nessuna istruzione, ma deve essere presente
+
+
+Es.
+    class Coppia
+    {
+        public:
+            int a;
+        
+        private:
+            Coppia(){       //costruttore 1
+                a = 1;
+                b = 2;
+            }
+
+            Coppia(int x, int y){       //costruttore 2
+                a = x;
+                b = y;
+            }
+    };
+
+    int main(){
+        
+        Coppia x;           //viene chiamato il costruttore Coppia e a = 0, b = 0
+        Coppia x(1,2)       //viene chiamato il costruttore Coppia  a = 1, b = 2
+    }
