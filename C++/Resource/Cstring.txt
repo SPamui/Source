@@ -14,6 +14,7 @@ cout << str; //stampa "oggi non piove"
 char str[10];
 cin >> str; //legge fino EOF o blank (EOF = end of file, blank = spazi)
 cin.getline(str, 10, '\n') //legge fino a '\n', contiene anche i blank
+                           //'\n' si può anche sostituire, per esempio con un carattere 'x'
 
 //#include <cstring> API
 strlen(str) //ritorna la lunghezza della stringa. Numero dei caratteri prima di '\0'
