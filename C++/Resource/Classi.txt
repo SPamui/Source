@@ -102,10 +102,9 @@ Es.
                             //settando i campi 'a' = 0 e 'b' = 0
     }
 
-    - Di norma per l' inizializzazione dei dati, si usa una formattazione diversa da come citata sopra. Non è un errore, ma è di buona norma scrivere un costruttore che inizializza i dati in questo modo: " nome_classe(tipo_dato x, tipo_dato y): dato(x), dato2(y){}",
-      questo costruttore si chiama "lista di inizializzazione". Nelle graffe possone esserci anche altre istruzioni
+    - Di norma per l' inizializzazione dei dati, si usa una formattazione diversa da come citata sopra. Non è un errore, ma è di buona         norma scrivere un costruttore che inizializza i dati in questo modo: " nome_classe(tipo_dato x, tipo_dato y): dato(x), dato2(y)         {}", questo costruttore si chiama "lista di inizializzazione". Nelle graffe possone esserci anche altre istruzioni
     
-    - Di costruttori possono essercene più di uno. Si puo decidere quale chiamare cambianto i prametri della funzione. In presenza di un costruttore avente dei campi, deve esserci anche il costruttore normale cioè 'Coppie()' anche senza nessuna istruzione, ma deve essere presente
+    - Di costruttori possono essercene più di uno. Si puo decidere quale chiamare cambianto i prametri della funzione. In presenza di un       costruttore avente dei campi, deve esserci anche il costruttore normale cioè 'Coppie()' anche senza nessuna istruzione, ma deve         essere presente
 
 
 Es.
@@ -131,3 +130,18 @@ Es.
         Coppia x;           //viene chiamato il costruttore Coppia e a = 0, b = 0
         Coppia x(1,2)       //viene chiamato il costruttore Coppia  a = 1, b = 2
     }
+     
+     
+     - Le funzioni di una classe posso essere dichiarate all' interne ma specificate al di fuori, questo si fa per lo più per le                funzioni che richiedono molteplici righe di codice.
+Es.
+    class Coppia
+    {
+        private:
+            int a;
+        public:
+            void stamp();
+            void set_a(int x);
+    }
+    
+    void Coppia::stamp(){ cout << a;}
+    vod Coppia::set_a(int x){ .... }
