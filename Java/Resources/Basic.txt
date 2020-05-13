@@ -1,0 +1,75 @@
+JAVA        https://www.programiz.com/java-programming/methods
+
+input {
+    
+    import java.util.Scanner;
+    
+    Scanner input = new Scanner(System.in);
+    
+    int a = input.nextInt();                                                //for take on console a Integer
+    String b = input.next();                                                //for take on console a String
+    float myFloat = input.nextFloat();                                      //for take on console a float
+    double myDouble = input.nextDouble();                                   //for take on console a Double
+}
+
+output {
+    
+    System.out.println("text to stamp");                                    //for put on console "text to stamp" with \n
+    System.out.println("text to stsmp");                                    //for put on console "text to stamp" without \n
+}
+
+foreach {
+    
+    for (int i : vet)                                                       //for every itemsv (i) in vet (array / vetors / list)
+        System.out.println(i);
+}
+
+array{
+    
+    int[] vet;                                                              //you have declarated an integer array but not initializated
+    vet = new int[5];                                                       //you now have initializated the array in 5 integer
+
+    or
+
+    int[] vet2 = {1, 2, 3, 4, 5....., n}                                   //iniz. an array of n elements
+}
+
+matrix {
+
+    Double[][] matrix = {                                                   //same thing of arrays, but x2
+        {1.2, 4.3, 4.0}, 
+        {4.1, -1.1}
+    };
+}
+
+copy array (Shallow copy) {
+
+    int [] numbers = {1, 2, 3, 4, 5, 6};
+    int [] posNumbers = numbers;                                            //if in future you change a numbers[0] element, posNumbers[0] also change;
+                                                                            //It's because both arrays refers to the same array object
+}
+
+normal copy array {
+
+    int [] source = {1, 2, 3, 4, 5, 6};
+    int [] destination = new int[6];
+    
+    for (int i = 0; i < source.length; ++i) {                               //source.length() return a length of source
+        destination[i] = source[i];
+}
+
+range copy array {
+
+    int[] source = {2, 3, 12, 4, 12, -2};                                   //define an array
+    int[] destination = Arrays.copyOfRange(source, 0, source.length);       //source = vet that you want copy | 0 = first element where you want start at copy | source.length (lenght of source) last element that you wnat copy
+}
+
+convert an array to string {
+
+    int[] source = {....};
+    Arrays.toString(source);
+
+    or
+
+    System.out.println(Arrays.toString(source));                            //this will stamp "[n, n1, n2]"
+}
