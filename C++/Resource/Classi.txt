@@ -150,3 +150,8 @@ Es.
     
     void Coppia::stamp(){ cout << a;}
     vod Coppia::set_a(int x){ .... }
+    
+     - Per copiare un' instaza in un altra:
+       classe r2(r1);
+       classe r2{r1};   //c++11
+       classe r2 = r1;
