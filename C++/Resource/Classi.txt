@@ -155,3 +155,6 @@ Es.
        classe r2(r1);
        classe r2{r1};   //c++11
        classe r2 = r1;
+     
+     - In caso di uso di memoria dinamica bisogna fare un costruttore per copie:
+       classe(const classe& x): a(x.a), b(x.b){};
