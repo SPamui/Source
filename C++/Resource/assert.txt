@@ -1,0 +1,12 @@
+#include <cassert>
+
+//usando il comando assert() si puo creare un break point per il programma
+//la funzione riceve una funzione di forma booleana ( a > 0 )
+//in caso di False, il programma si interrompera con Core Dumped, in caso di True il programma proseguirà.
+
+int a;
+cin >> a;
+
+assert(a > 5);  //in caso che a fosse < 5, il programma si bloccherà con core dumped altrimenti stamperà "Hello"
+
+cout << "Hello";
