@@ -105,6 +105,11 @@ Es.
     - Di norma per l' inizializzazione dei dati, si usa una formattazione diversa da come citata sopra. Non è un errore, ma è di buona         norma scrivere un costruttore che inizializza i dati in questo modo: " nome_classe(tipo_dato x, tipo_dato y): dato(x), dato2(y)         {}", questo costruttore si chiama "lista di inizializzazione". Nelle graffe possone esserci anche altre istruzioni
     
     - Di costruttori possono essercene più di uno. Si puo decidere quale chiamare cambianto i prametri della funzione. In presenza di un       costruttore avente dei campi, deve esserci anche il costruttore normale cioè 'Coppie()' anche senza nessuna istruzione, ma deve         essere presente
+    
+    -Se scrivo un costruttore del tipo 'classe(int x = 0, int y = 1): a(x), b(y) {};' 'a' e 'b' saranno inizializzati a 0 e 1
+     Pero se, quando creo l'instanza  della classe, la chiamo con questo costruttore passandogli come parametro un elemento del tipo
+     'classe uno(1);' verrà creata l' instanza della classe inizializzando le variabili 'a' e 'b' rispettivamente a '1' e '1'.
+     Ricorda che i parametri vengono passati da sinistra verso destra.
 
 
 Es.
