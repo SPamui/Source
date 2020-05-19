@@ -1,3 +1,4 @@
+import termios, os, tty
 def _getch():
    fd = sys.stdin.fileno()
    old_settings = termios.tcgetattr(fd)
