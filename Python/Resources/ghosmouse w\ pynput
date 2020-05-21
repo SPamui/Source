@@ -1,0 +1,43 @@
+Per installarla : pip install pynpuy
+Questa api ci permette di muovere il mouse, scrollare, trascinare e cliccare
+
+Esempio:
+
+  from pynput.mouse import Button, Controller   //import della lib
+  mouse = Controller()                          //inizializzazione del nostro oggetto (mouse)
+  mouse.position                                //ritorna le cordinate del mouse in quel momento
+  mouse.position = (x, y)                       //sposta il mouse
+  
+  mouse.press(Button.left)                      //Tieni clickato e rilascia
+  mouse.release(Button.left)
+
+  mouse.click(Button.left, 2)                   //Click del mouse (Button.right / .left, x)
+                                                //dove x è il numero dei click
+  mouse.scroll(0, 2)                            //Scroll di tot (0, x)
+
+Non abbiamo solo la possibilità di muovere ma anche di monitorare
+Esempio:
+  from pynput.mouse import Listener             //Import della lib
+
+  def on_move(x, y):
+      print('Pointer moved to {0}'.format(
+          (x, y)))
+
+  def on_click(x, y, button, pressed):
+      print('{0} at {1}'.format(
+          'Pressed' if pressed else 'Released',
+          (x, y)))
+      if not pressed:
+          # Stop listener
+          return False
+
+  def on_scroll(x, y, dx, dy):
+      print('Scrolled {0}'.format(
+          (x, y)))
+
+  # Collect events until released
+  with Listener(                                //Salva le posizioni prima di un click
+          on_move=on_move,
+          on_click=on_click,
+          on_scroll=on_scroll) as listener:
+      listener.join()
