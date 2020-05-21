@@ -1,16 +1,16 @@
 //-----vector-----\\
 
-vectorOfInt v;
+// vectorOfInt v;
 
-size           //numero di elementi inseriti nel vector
-capacity       //numero di elementi che posso ancora inserire
+// size           //numero di elementi inseriti nel vector
+// capacity       //numero di elementi che posso ancora inserire
 
-Nel momento dell' inizializzazione la size = 0, la capacity = n
-Nel momento in cui la size diventa uguale alla capacity entra in gioco la funzione di ingrandimento,
-dove si crea un altro array piu grande, si copia quello vecchia nel nuovo e si cancella il vecchio.
-E man mano cosi
+// Nel momento dell' inizializzazione la size = 0, la capacity = n
+// Nel momento in cui la size diventa uguale alla capacity entra in gioco la funzione di ingrandimento,
+// dove si crea un altro array piu grande, si copia quello vecchia nel nuovo e si cancella il vecchio.
+// E man mano cosi
 
-Definiamo la classe vectorOfInt:
+// Definiamo la classe vectorOfInt:
 
 class vectorOfInt{
     private:
@@ -40,9 +40,6 @@ class vectorOfInt{
                 p[i] = x.p[i];
         };
 
-        vectorOfInt& operator=(const vectorOfInt& v){                                   //funzione per poter copiare in qualsiasi momento
-        };
-
         void push(int x){
             if( size == capacity )
                 resize();
@@ -55,10 +52,12 @@ class vectorOfInt{
             delete []p;
         }
 
-        unsigned getSize(){return size;};
-        unsigned getCapacity(){return capacity;};
+        unsigned getSize() const {return size;};
+        unsigned getCapacity() const {return capacity;};
 
-        int getElement(unsigned i){return p[i];};
+        int getElement(unsigned i) const {return p[i];};
+
+        vectorOfInt& operator=(const vectorOfInt& v);                                   //funzione per poter copiare in qualsiasi momento **
 };
 
 int main()
@@ -75,8 +74,80 @@ int main()
 
     cout << endl << v2.getCapacity();
 
-    v2 = v  //<-- perator= v2.operator=(v)
+    v2 = v  //<-- operator= v2.operator=(v)
 
 
     return 0;
 }
+
+// ** questa funzione particolare ci serve a ridefinire il comportamento del programma in confronto ad alcuni operatori
+// se usati con i nostr oggetti
+// prendendo per esempio la classe Razionale (che raffigura i numeri razionali)
+// Razionale A(2, 3), B(1, 4);
+// Razionale C = A+B;        --> in questo caso, in priis viene creata l' instanza di C con la chiamata del costruttore per copie
+// in secondo luogo gli assegna la somma degli altri due oggetti, ma come fa a caire cosa deve sommare??
+// lo puo capire grazie all' implementazione nella classe del metodo sopra citato, che diciamo ' spiega cosa fare ' quando si ci trova
+// davanti a queste situazioni. Il metodo si forma come segue:
+    
+    vectorOfInt& vectorOfInt::operator=(const vectorOfInt& v){      // nomeClasse& operatore< operatore, che sia = + - < [] > << ecc. >(const nomeClasse& x){}
+        if(this != &v)                                              // all' interno del metodo (in questo caso) possiamo dscrivere cosa deve fare
+        {                                                           // in caso si trova nella situazione v2 = v
+            delete []p;                                             // iniziamo cancellando l' array che esisteva gia
+            *p = new int[v.capacity];                               // ne creiamo uno nuovo della stessa grandezza di quello da cui devo copiare
+            capacity = v.capacity;                                  // e ne memorizzo la lunghezza, uguale a quella da cui devo copiare
+
+            for(unsigned i = 0; i < v.size; i++)                    //come nel costruttore per copie, copio i dati dell' array
+                p[i] = v.p[i];
+            
+            size = v.size;                                          // e me ne memorizzo il numero
+        }
+        return *this;                                               // con il puntatore this, ritorno a V2 ciò che ho appena fatto.
+    };
+
+// Altro esempio particola di questo tipo di funzione è la descrizione di operator[]
+// In una instanza, a meno che non sia un array di instanze, non si potrebbe scrivere
+// nomeClasse A;
+// cout << A[1];   <-- v2.operator[](1)
+// implementiamo questo particolare metodo
+
+    int vectorOfInt::operator[](unsigned i){return p[i]};           // in pratica sarà come fare cout << v.getElement[i];
+
+// Ma se volessi fare v2[1] = 1200, funzionerebbe?
+// Essenzialmente no, poichè il metodo che abbiamo scritto noi non passiamo un riferimento ma un dato 'int'
+// se invece avessi scritto:
+
+    int& vectorOfInt::operator[](unsigned i){return p[i]};
+
+// in questo modo funziona, poiche vado a restituire non un valore, ma una variabile, un soazio di memoria
+
+// E' di buona norma, ma sorattutto in caso di oggetto dichiarato const, dichiarare tutti i metodi che NON modificano l' oggetto,
+// cioè che lo leggono e basta, devono essere dichiarati constanti. 
+// Esempio
+
+    vectorOfInt x;
+    
+    x.stampa();
+
+    void stampa() const{}
+
+// Cio ne rende possibile il richiamo da oggetti const
+// Il fatto che sia dichiarato const il metodo, non implica nulla sulla funzionalità del metodo.
+// Due esempi di metodi quasi sempre const:
+
+    getX()
+    stampa()
+
+// Per questi due metodi è un po diverso
+
+    vectorOfInt& operator= const (vectorOfInt& v);
+    int& vectorOfInt::operator[](unsigned i) const {return p[i]};
+
+// Anche se dichiarati const, facendo A[1] = 33, con A constnte, vedremo che la modifica da noi scritta andrà in porto
+// e questo è un errore. Il motivo per cui il valore viene modificato, è perchè noi non restituiamo un 'qualcosa' ma restituiamo
+// l' INDIRIZZO di quel 'qualcosa'
+// Per esempio di questi due metodi potremmo crearne due versioni, una normale come sopra illustrata e una come segue:
+
+    vectorOfInt& operator= ( vectorOfInt& v);                           // non const
+    vectorOfInt operator= const( vectorOfInt& v);                       // const
+    int vectorOfInt::operator[](unsigned i) const {return p[i]};        // const
+    int& vectorOfInt::operator[](unsigned i){return p[i]};              // non const
