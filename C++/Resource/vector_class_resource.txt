@@ -1,0 +1,82 @@
+//-----vector-----\\
+
+vectorOfInt v;
+
+size           //numero di elementi inseriti nel vector
+capacity       //numero di elementi che posso ancora inserire
+
+Nel momento dell' inizializzazione la size = 0, la capacity = n
+Nel momento in cui la size diventa uguale alla capacity entra in gioco la funzione di ingrandimento,
+dove si crea un altro array piu grande, si copia quello vecchia nel nuovo e si cancella il vecchio.
+E man mano cosi
+
+Definiamo la classe vectorOfInt:
+
+class vectorOfInt{
+    private:
+        int *p;
+        unsigned size;
+        unsigned capacity;
+
+        void resize(){
+            int *q = new int[capacity*2];
+
+            for(unsigned i = 0; i < size; i++)
+                q[i] = p[i];
+            delete []p;
+            p = q;
+            capacity *= 2;
+        };
+
+    public:
+        vectorOfInt(): size(0), capacity(10){
+            p = new int[capacity];
+        }
+
+        vectorOfInt(const vectorOfInt& x): size(x.size), capacity(x.capacity){          //costruttore per copia
+            p = new int[capacity];
+
+            for(unsigned i = 0; i < size; i++)
+                p[i] = x.p[i];
+        };
+
+        vectorOfInt& operator=(const vectorOfInt& v){                                   //funzione per poter copiare in qualsiasi momento
+        };
+
+        void push(int x){
+            if( size == capacity )
+                resize();
+                
+            p[size] = x;
+            size++;
+        }
+                
+        ~vectorOfInt(){                                                                 //distruttore
+            delete []p;
+        }
+
+        unsigned getSize(){return size;};
+        unsigned getCapacity(){return capacity;};
+
+        int getElement(unsigned i){return p[i];};
+};
+
+int main()
+{  
+    vectorOfInt v;
+
+    for (unsigned i = 0; i < 63; i++)
+        v.push(i);
+    
+    vectorOfInt v2 = v;
+
+    for (unsigned i = 0; i < v.getSize(); i++)
+        cout << v2.getElement(i) << " ";
+
+    cout << endl << v2.getCapacity();
+
+    v2 = v  //<-- perator= v2.operator=(v)
+
+
+    return 0;
+}
