@@ -158,3 +158,30 @@ Es.
      
      - In caso di uso di memoria dinamica bisogna fare un costruttore per copie:
        classe(const classe& x): a(x.a), b(x.b){};
+
+Nelle classi, possiamo ridefinire anche alcuni operatori.
+
+per esempio:
+    ostream& operator << (ostream& out, const NomeClasse& esc){
+        out << "Destinazione = " << esc.destinazione << endl;
+        return out;
+    }
+
+Oppure:
+    bool Escursione::operator > (const Escursione& due){
+        int x, y;
+        x = nPartecipanti();
+        y = due.nPartecipanti();
+
+        if(durata > due.durata)  return true;
+        else if(durata < due.durata)  return false;
+
+        if(costo < due.costo) return true;
+        else if(costo > due.costo) return false;
+
+        if(x > y) return true;
+        else return false;
+    }
+
+Esempi di operatori non modificabili: &
+Esempi di operatori modificabili: <<, <, >>, >, [], +, -, /, *
