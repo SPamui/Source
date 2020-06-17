@@ -14,3 +14,10 @@ cout << "Inserisci: " << endl;
 for (int dim_riga = 0; dim_riga < row; dim_riga++)
   for (int dim_colonna = 0; dim_colonna < cols; dim_colonna++)
       cin >> MATRICE [dim_riga] [dim_colonna];
+
+//Deallocazione
+
+for(int i = 0; i < row; i++)
+  delete[] m[i];
+
+delete[] m;
