@@ -185,3 +185,35 @@ Oppure:
 
 Esempi di operatori non modificabili: &
 Esempi di operatori modificabili: <<, <, >>, >, [], +, -, /, *
+
+Operatori come >> e << devono essere obbligatoriamente implementati fuori dalla classe, e trasmessi alla classa con friend
+Es:
+    //nella classe
+    friend istream& operator>>(istream& in, Oggetto& obj);
+    
+    //fuori dalla classe
+    friend istream& operator>>(istream& in, Oggetto& obj){
+        cout << "Inserisci il nome: ";
+        in >> obj.nome;
+        return in;
+    }
+    
+    
+    //nella classe
+    friend ostream& operator<<(ostream& out, Oggetto& obj);
+    
+    //fuori dalla classe
+    friend ostream& operator<<(ostream& out, Oggetto& obj){
+        out << "Nome: " << obj.nome;
+        return out;
+    }
+
+Operatori come [] devono essere obbligatoriamente dichiarati ed implementati all' interno della classe
+Es:
+    //nella classe
+    const Strumento& Negozio::operator[](unsigned ind) const;
+    
+    //dove si preferisce
+    const Strumento& Negozio::operator[](unsigned ind) const{
+        return strumenti[ind];
+    }
