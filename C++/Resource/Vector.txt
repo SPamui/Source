@@ -25,3 +25,142 @@ end() – //restituisce un puntatore che punta teoricamente all' elemento del ve
     vector <int> a,b;
     if(a == b)          //è possibile confrontare in questo modo due vettori
         cout << "OK";
+
+// ASSIGN
+    //Cancella tutti i valori nel Vector e assegna
+    //ad esso gli elementi dell'array partendo da 
+    //un indice e finendo ad un altro indice(escluso)
+    int a[] = {1,2,3,4};
+    vec.assign(a+1, a+3);
+    //oppure gli assegna un determinato valore n volte (n, value)
+    vec.assign(10, 5);
+    
+ // AT
+    //Fornisce l'accesso al dato presente 
+    //in quella posizione
+    vec.at(0) = 11;
+    cout<< vec.at(0);
+
+// BACK
+    //Fornisce l'accesso al dato presente 
+    //nell'ultima posizione
+    vec.back() = 44;
+    cout<< vec.back();
+    
+// BEGIN
+    //Iteratore che punta al primo elemento 
+    //del Vector
+    vec.begin();
+
+
+// CAPACITY
+    //Ritorna il numero di slot allocati
+    //in memoria dal Vector
+    //N.B: gli slot possono essere vuoti
+    cout<< vec.capacity();
+
+
+// CLEAR
+    //Cancella tutti gli elementi nel Vector
+    vec.clear();
+    
+
+// EMPTY
+    //Restituisce 1 se il Vector è vuoto
+    //altrimenti 0
+    cout<< vec.empty();
+
+    
+// END
+    //Iteratore che punta all'ultimo+1 elemento
+    //del Vector
+    vec.end();
+
+
+// ERASE
+    //Rimuove un elemento ad una specifica posizione
+    //e fa scorrere tutti gli elementi che si trovano
+    //dopo di esso verso sinistra;
+    //N.B: è obbligatorio usare gli iteratori e 
+    //non gli indici sotto forma di intero
+    vec.erase(vec.begin());
+    // NO -> vec.erase(0)
+    //oppure rimuove un range di elementi
+    vec.erase(vec.begin()+2, vec.begin()+5);
+
+
+// FRONT
+    //Fornisce l'accesso al dato presente 
+    //nella prima posizione
+    vec.front() = 55;
+    cout<< vec.front();
+
+
+// INSERT
+    //Aggiunge nel Vector gli elementi dell'array 
+    //partendo da un indice e finendo ad un altro 
+    //indice(escluso) in una determinata posizione;
+    //N.B: è obbligatorio usare gli iteratori e 
+    //non gli indici sotto forma di intero
+    int a[] = {1,2,3,4};
+    vec.insert(vec.begin()+3, a+1, a+3 );
+    //oppure aggiunge un determinato valore n volte
+    //in una determinata posizione
+    vec.insert(vec.begin(), 10, 5);
+    //oppure aggiunge un solo elemento in una 
+    //determinata posizione
+    vec.insert(vec.end()-3, 5);
+
+
+// =
+    //Copia tutti gli elementi di un Vector
+    //in un altro Vector
+    vec2 = vec;
+
+
+// []
+    //Ti permette di accedere ad un dato in un 
+    //determinato indice
+    vec[1] = 4;
+    cout<< vec[1];
+
+    
+// POP_BACK
+    //Elimina l'ultimo elemento
+    vec.pop_back();
+    
+
+// PUSH_BACK
+    //Aggiunge un elemento alla fine
+    vec.push_back(10);
+
+
+// RESERVE
+    //Alloca slot vuoti in memoria
+    vec.reserve(20);
+
+    
+// RESIZE
+    //Porta il Vector a una dimensione definita, 
+    //se la nuova dimensione è minore di quella 
+    //corrente allora il Vector verrà troncato
+    vec.resize(3);
+
+
+// SHRINK_TO_FIT
+    //Riduce la capacità del Vector alla sua dimensione
+    //es. se ci sono 10 elementi allocati e solo 2
+    //sono occupati allora da 10 si passerà a 2 elementi
+    //allocati in memoria
+    // == vec.capacity(vec.size()) ==
+    vec.shrink_to_fit();
+    
+
+// SIZE
+    //Ritorna il numero di elementi nel Vector
+    vec.size();
+
+
+// SWAP
+    //Due Vector si scambiano gli elementi
+    vec.swap(vec2);
