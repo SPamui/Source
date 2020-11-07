@@ -14,3 +14,24 @@ Le liste sono formate da NODI
 -L'ultimo nodo contiene un pointeer ad un lemento speciale che rappresenta la fine. (Tail)
 -La double linked list, oltre al puntatore che punta verso il succesivo, ne ha anche uno che punto al precedente.
 -Il primo nodo contiene un pointere ad un lemento speciale che rappresenta la testa (Head)
+
+Questi sono i metodi:
+  List();
+  void push_back(T value); //Inserisce value alla fine della lista
+  void pop_back(); //Rimuove l'ultimo elemento
+  T& back(); //Restituisce un riferimento all'ultimo elemento
+  const T& back() const; //Restituisce un riferimento costante all'ultimo elemento
+  void push_front(T value); //Inserisce un elemento all'inizio della lista
+  void pop_front(); //Rimuove il primo elemento
+  T& front(); //Restituisce un riferimento al primo elemento
+  const T& front() const; //Restituisce un riferimento costante al primo elemento
+  bool empty() const; //Controlla se la lista è vuota
+  void clear(); //Svuota la lista
+  unsigned size() const; //Restituisce il numero di elementi nella lista
+
+  ~List();
+  List(const List<T>& l);
+  List<T>& operator=(const List<T>& l);
+
+Questi metodi non ci permettono di iterare sulla lista.
+Per questo ci vengono in aiuto gli iteratori.
