@@ -1,0 +1,16 @@
+Problema degli array: Staticità
+Problema dei vector: Eliminazione / Inserimento di un elemento nel mezzo
+                     richiede uno shift dei dati e un resize.
+
+Le liste, cosa sono?
+-Rappresentano, come i vector, una sequenza di elementi
+-E' nata con l'idea di rendere più efficaci le operazioni di Inserimento
+ e rimozione all'interno.
+-Di contro, accedere all'elemento i-esimo richiede una scansione
+-Le liste possono essere di due tipi: Linked list e double linked list
+
+Le liste sono formate da NODI
+-Ogni nodo contiene un elemento e il puntatore al nodo contenente l'elemento succesivo
+-L'ultimo nodo contiene un pointeer ad un lemento speciale che rappresenta la fine. (Tail)
+-La double linked list, oltre al puntatore che punta verso il succesivo, ne ha anche uno che punto al precedente.
+-Il primo nodo contiene un pointere ad un lemento speciale che rappresenta la testa (Head)
