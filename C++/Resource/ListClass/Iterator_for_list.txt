@@ -23,10 +23,10 @@ int main(){
   l.push_back(4);
   l.push_back(3);
   l.push_back(6);
+  
   for(List<int>::iterator it = l.begin(); it != l.end(); ++it){
     cout << *it << endl;
   }
   return 0;
 }
-
 
