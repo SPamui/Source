@@ -1,0 +1,32 @@
+Un iteratore è un oggetto che permette di iterare gli elementi di una qualche struttura dati (come un vettore),
+utilizzando un insieme di operatori (esempio, l'operatore ++ e l'operatore *)
+Anche i puntatori posso essere visti come un iteratore sugli array.
+
+int main(){
+  int a[5] = {1,2,3,4,5};
+  for(int* p=a; p != a+5: ++p){
+    cout << *p << endl;
+  }
+  return 0;
+}
+
+Come funzionano gli iteratori sulle liste?
+
+Nel caso delle liste, l'iteratore è un soggetto che contiene al suo interno un nodo della lista e permette di compiere delle operazioni
+su quel nodo, tra cui:
+-Accedere/modificare il valore dell' elemento interno al nodo (operatore *)
+-Spostarsi al nodo successivo (operatore ++)
+-Per iterare su una lista abbiamo bisogno di un iteratore che indichi qual è il nodo di partenza (head) e un iteratore che indichi he abbiamo finito l'iterazione
+
+int main(){
+  List<int> l;
+  l.push_back(4);
+  l.push_back(3);
+  l.push_back(6);
+  for(List<int>::iterator it = l.begin(); it != l.end(); ++it){
+    cout << *it << endl;
+  }
+  return 0;
+}
+
+
