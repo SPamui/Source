@@ -3,7 +3,16 @@
 
 template <class T>
 class List {
-
+    private:
+        struct Node {
+            Node* previous;
+            Node* next;
+            T value;
+        };
+        
+        Node* head;
+        Node* tail;
+    
     public:
         List();
         void push_back(T value); //Inserisce value alla fine della lista
@@ -21,16 +30,32 @@ class List {
         ~List();
         List(const List<T>& l);
         List<T>& operator=(const List<T>& l);
-    
-    private:
-        struct Node {
-            Node* previous;
-            Node* next;
-            T value;
+           
+        class iterator {
+            private:
+                Nodo* current;
+                Iterator(Node* n) { current =  n;};
+           public:
+                bool operator!=(Iterator i) const { return current != i.current; };
+                bool operator==(Iterator i) const { return current == i.current; };
+                T* operator*() { return current -> value};
+                
+                //pre incremento
+                Iterator& operator++(){
+                    curent = current -> next;
+                    return *this;
+                }
+                
+                //post incremento
+                Iterator operator++(int) {
+                    Iterator tmp(current);
+                    current = current -> next;
+                    return tmp;
+                }
+                
         };
-        
-        Node* head;
-        Node* tail;
+        Iterator begin() { return Iterator(head); };
+        Iterator end() {return Iterator(nullptr); };
 };
 
 template <class T>
@@ -173,3 +198,27 @@ List<T>& List<T>::operator=(const List<T>& l) {
 }
 
 #endif
+
+
+
+
+es. main
+
+for(List<int>::Iterator it = l.begin(); it != l.end(); ++it){
+    cout << " " << *it;
+}
+cout << endl;
+
+//oppure
+for(auto it = l.begin(); it != l.end(); ++it){
+    cout << " " << *it;
+}
+cout << endl;
+
+//uso del foreach
+
+for(int elem : l){
+    cout << " " << elem;
+}
+cout << endl;
+
