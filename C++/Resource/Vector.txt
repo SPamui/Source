@@ -14,7 +14,7 @@ for(int i = 0; i < x; i++)
 
 //iteratori
 vet.begin() //restituisce un puntatore che punta al primo elemento del vettore
-end() – //restituisce un puntatore che punta teoricamente all' elemento del vettore che segue l' ultimo
+vet.end() – //restituisce un puntatore che punta teoricamente all' elemento del vettore che segue l' ultimo
     esempio: //usandolo per stampare il vettore
         vector <int> vet = { 1, 2, 3, 4, 5 }; 
         for (auto it = vet.begin(); it != vet.end(); ++it)
